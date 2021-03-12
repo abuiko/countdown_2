@@ -61,6 +61,12 @@ function getRemainingTime() {
     let minutes = Math.floor((t % oneHour) / oneMinute);
     let seconds = Math.floor((t % oneMinute) / 1000);
 
+    const values = [days, hours, minutes, seconds];
+    items.forEach((item, index) => {
+        item.innerHTML = values[index];
+    })
 }
 
 getRemainingTime();
+
+setInterval(getRemainingTime, 1000);
