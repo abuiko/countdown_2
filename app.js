@@ -23,12 +23,12 @@ const weekdays = [
     'Saturday'
 ];
 
-const countdown = document.querySelector('countdown');
+const countdown = document.querySelector('.countdown');
 const items = document.querySelectorAll('.content h4');
 const content = document.querySelector('.content p');
 
 
-let futureDate = new Date('2021-06-01T05:30:00');
+let futureDate = new Date('2021-03-11T23:06:00');
 const year = futureDate.getFullYear();
 const hours = futureDate.getHours();
 const minutes = futureDate.getMinutes();
@@ -65,8 +65,14 @@ function getRemainingTime() {
     items.forEach((item, index) => {
         item.innerHTML = values[index];
     })
+
+    if (t < 0) {
+        clearInterval(time);
+        countdown.innerHTML = '<h4>Giveaway Ended</h4>';
+    }
 }
 
-getRemainingTime();
+let time = setInterval(getRemainingTime, 1000);
 
-setInterval(getRemainingTime, 1000);
+
+getRemainingTime();
