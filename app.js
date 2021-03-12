@@ -28,7 +28,7 @@ const items = document.querySelectorAll('.content h4');
 const content = document.querySelector('.content p');
 
 
-let futureDate = new Date('2021-03-11T23:06:00');
+let futureDate = new Date('2021-03-12T07:06:00');
 const year = futureDate.getFullYear();
 const hours = futureDate.getHours();
 const minutes = futureDate.getMinutes();
@@ -63,9 +63,15 @@ function getRemainingTime() {
 
     const values = [days, hours, minutes, seconds];
     items.forEach((item, index) => {
-        item.innerHTML = values[index];
+        item.innerHTML = format(values[index]);
     })
 
+    function format(item) {
+        if (item < 10 && item > 0) {
+            return `0${item}`;
+        }
+        return item;
+    }
     if (t < 0) {
         clearInterval(time);
         countdown.innerHTML = '<h4>Giveaway Ended</h4>';
